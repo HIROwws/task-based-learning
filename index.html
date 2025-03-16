@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TaskMaster</title>
+        
+        <!-- Фавикон с иконкой 🎓 -->
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+    
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
+<body>
+    <header>
+        <h1><span class="icon">🎓</span> TaskMaster</h1>
+        <p>Увлекательное изучение английского языка!</p>
+    </header>
+
+    <section class="scoreboard">
+        <p>Твои очки: <span id="score">0</span></p>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <button onclick="restartGame()" class="restart-btn">🔄 Начать заново</button>
+    </section>
+
+    <section class="menu">
+        <button onclick="showTask('vocab')">🧠 Словарный запас</button>
+        <button onclick="showTask('grammar')">⏳ Грамматика (времена)</button>
+        <button onclick="showTask('memory')">🎮 Игры на запоминание</button>
+        <button onclick="showTask('fillGaps')">✏️ Заполни пропуски</button>
+        <button onclick="showTask('translate')">📋 Перевод предложений</button>
+        <button onclick="showTask('findMistake')">🔎 Найди ошибку</button>
+        <button onclick="showTask('reading')">📚 Чтение и понимание</button>
+    </section>
+
+    <!-- 1. Словарный запас -->
+    <section id="vocab" class="task-section">
+        <h2>🧠 Словарный запас</h2>
+        <div class="question-block">
+            <p>Выбери правильный перевод слова <strong>Table</strong>:</p>
+            <button onclick="selectAnswer(this, true)">Стол</button>
+            <button onclick="selectAnswer(this, false)">Книга</button>
+            <button onclick="selectAnswer(this, false)">Собака</button>
+        </div>
+        <div class="question-block">
+            <p>Выбери правильный перевод слова <strong>Window</strong>:</p>
+            <button onclick="selectAnswer(this, true)">Окно</button>
+            <button onclick="selectAnswer(this, false)">Дверь</button>
+            <button onclick="selectAnswer(this, false)">Кошка</button>
+        </div>
+    </section>
+
+    <!-- 2. Грамматика -->
+    <section id="grammar" class="task-section">
+        <h2>⏳ Грамматика (времена)</h2>
+        <div class="question-block">
+            <p>Выбери правильную форму глагола: "She ____ to school every day."</p>
+            <button onclick="selectAnswer(this, true)">goes</button>
+            <button onclick="selectAnswer(this, false)">go</button>
+            <button onclick="selectAnswer(this, false)">going</button>
+        </div>
+        <div class="question-block">
+            <p>Выбери правильную форму: "They ____ playing football now."</p>
+            <button onclick="selectAnswer(this, false)">plays</button>
+            <button onclick="selectAnswer(this, true)">are</button>
+            <button onclick="selectAnswer(this, false)">is</button>
+        </div>
+    </section>
+
+    <!-- 3. Игры на запоминание -->
+    <section id="memory" class="task-section">
+        <h2>🎮 Игры на запоминание</h2>
+        <div class="question-block">
+            <p>Найди пару: "Cat" - это...</p>
+            <button onclick="selectAnswer(this, true)">Кошка</button>
+            <button onclick="selectAnswer(this, false)">Собака</button>
+            <button onclick="selectAnswer(this, false)">Мышь</button>
+        </div>
+        <div class="question-block">
+            <p>Найди пару: "Apple" - это...</p>
+            <button onclick="selectAnswer(this, true)">Яблоко</button>
+            <button onclick="selectAnswer(this, false)">Апельсин</button>
+            <button onclick="selectAnswer(this, false)">Груша</button>
+        </div>
+    </section>
+
+    <!-- 4. Заполни пропуски -->
+    <section id="fillGaps" class="task-section">
+        <h2>✏️ Заполни пропуски</h2>
+        <div class="question-block">
+            <p>I ____ a student.</p>
+            <button onclick="selectAnswer(this, true)">am</button>
+            <button onclick="selectAnswer(this, false)">is</button>
+            <button onclick="selectAnswer(this, false)">are</button>
+        </div>
+        <div class="question-block">
+            <p>They ____ friends.</p>
+            <button onclick="selectAnswer(this, false)">is</button>
+            <button onclick="selectAnswer(this, false)">am</button>
+            <button onclick="selectAnswer(this, true)">are</button>
+        </div>
+    </section>
+
+    <!-- 5. Перевод предложений -->
+    <section id="translate" class="task-section">
+        <h2>📋 Перевод предложений</h2>
+        <div class="question-block">
+            <p>Переведи: "Я люблю читать книги."</p>
+            <button onclick="selectAnswer(this, true)">I like reading books.</button>
+            <button onclick="selectAnswer(this, false)">I read like books.</button>
+            <button onclick="selectAnswer(this, false)">I books like reading.</button>
+        </div>
+        <div class="question-block">
+            <p>Переведи: "Он играет в футбол каждый день."</p>
+            <button onclick="selectAnswer(this, true)">He plays football every day.</button>
+            <button onclick="selectAnswer(this, false)">He play football every day.</button>
+            <button onclick="selectAnswer(this, false)">He is play football every day.</button>
+        </div>
+    </section>
+
+    <!-- 6. Найди ошибку -->
+    <section id="findMistake" class="task-section">
+        <h2>🔎 Найди ошибку</h2>
+        <div class="question-block">
+            <p>Найди ошибку: "She go to school every day."</p>
+            <button onclick="selectAnswer(this, true)">go → goes</button>
+            <button onclick="selectAnswer(this, false)">school → schools</button>
+            <button onclick="selectAnswer(this, false)">every → ever</button>
+        </div>
+        <div class="question-block">
+            <p>Найди ошибку: "They is happy."</p>
+            <button onclick="selectAnswer(this, true)">is → are</button>
+            <button onclick="selectAnswer(this, false)">happy → happiness</button>
+            <button onclick="selectAnswer(this, false)">They → Them</button>
+        </div>
+    </section>
+
+    <!-- 7. Чтение и понимание -->
+    <section id="reading" class="task-section">
+        <h2>📚 Чтение и понимание</h2>
+        <div class="question-block">
+            <p>Текст: "John has a dog. The dog is black."<br>Какого цвета собака?</p>
+            <button onclick="selectAnswer(this, true)">Чёрная</button>
+            <button onclick="selectAnswer(this, false)">Белая</button>
+            <button onclick="selectAnswer(this, false)">Серая</button>
+        </div>
+        <div class="question-block">
+            <p>Текст: "Mary likes apples. She eats them every day."<br>Что любит Мэри?</p>
+            <button onclick="selectAnswer(this, false)">Груши</button>
+            <button onclick="selectAnswer(this, true)">Яблоки</button>
+            <button onclick="selectAnswer(this, false)">Апельсины</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
